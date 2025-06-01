@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
+//import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.mpg.myapp.viewmodel.HomeScreenViewModel
 
@@ -44,49 +45,20 @@ fun HomeScreen(viewModel: HomeScreenViewModel = viewModel()) {
             .background(Color.LightGray)
     ) {
         // Create references for the composables
-        val (box1, box2, text, txtUserName, btnSubmit) = createRefs()
+        val (txtUserName, btnSubmit) = createRefs()
 
-        // First Box
-        Box(
-            modifier = Modifier
-                .background(Color.Red)
-                .constrainAs(box1) {
-                    top.linkTo(parent.top, margin = 16.dp)
-                    start.linkTo(parent.start, margin = 16.dp)
-                }
-                .size(100.dp)
-        )
-
-        // Second Box
-        Box(
-            modifier = Modifier
-                .background(Color.Blue)
-                .constrainAs(box2) {
-                    top.linkTo(box1.bottom, margin = 16.dp)
-                    start.linkTo(box1.end, margin = 16.dp)
-                }
-                .size(100.dp)
-        )
-
-        // Text
-        BasicText(
-            text = "Hello, ConstraintLayout!",
-            modifier = Modifier.constrainAs(text) {
-                top.linkTo(box2.bottom, margin = 16.dp)
-                start.linkTo(parent.start)
-                end.linkTo(parent.end)
-            }
-        )
         OutlinedTextField(
             value = username,
             onValueChange = { viewModel.updateUsername(it) },
             modifier = Modifier
                 .constrainAs(txtUserName) {
-                    top.linkTo(text.bottom, margin = 16.dp)
+                    top.linkTo(parent.top, margin = 16.dp)
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
+                    bottom.linkTo(parent.bottom)
                 }
-                .border(1.dp, color = Color.Gray),
+               // .border(1.dp, color = Color.Gray)
+            ,
             label = { Text("Enter your username") }
         )
         Button(
@@ -100,7 +72,7 @@ fun HomeScreen(viewModel: HomeScreenViewModel = viewModel()) {
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
                 }
-                .border(1.dp, color = Color.Gray)
+                //.border(1.dp, color = Color.Gray)
         ) {
             Text("Click Me")
         }

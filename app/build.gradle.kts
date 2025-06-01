@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    id("dagger.hilt.android.plugin")
+    kotlin("kapt")
 }
 
 android {
@@ -52,6 +54,12 @@ dependencies {
     implementation(libs.androidx.constraintlayout.compose.v111)
     implementation(libs.androidx.lifecycle.viewmodel.compose) // Or the latest version
     implementation (libs.androidx.lifecycle.runtime.compose)
+
+//    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+//    implementation("com.google.dagger:hilt-android:2.56.2")
+//    ksp("com.google.dagger:hilt-android-compiler:2.56.2")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
