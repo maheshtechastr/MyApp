@@ -58,8 +58,11 @@ dependencies {
 //    implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.hilt.android)
     kapt(libs.hilt.compiler)
-//    implementation("com.google.dagger:hilt-android:2.56.2")
-//    ksp("com.google.dagger:hilt-android-compiler:2.56.2")
+
+    //Room
+    implementation(libs.androidx.room.runtime)
+    kapt(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
